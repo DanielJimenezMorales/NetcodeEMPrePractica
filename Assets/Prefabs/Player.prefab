@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 903688909063725954}
   - component: {fileID: 903688909063725953}
   - component: {fileID: 903688909063725957}
+  - component: {fileID: 1227605282655742192}
   - component: {fileID: 1157783657}
   - component: {fileID: 2909620193840096374}
   m_Layer: 0
@@ -256,6 +257,37 @@ MonoBehaviour:
       m_Action: Move
       m_Flags: 8
     m_Flags: 0
+--- !u!114 &1227605282655742192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903688909063725952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96133fa62458277479fa017a841205f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ColorChangeInput:
+    m_Name: Color Change Input
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 936b30f4-7383-420a-9239-3ff2ed963a2b
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: b892a094-10cc-4d33-83e9-56ef7e75b273
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Color Change Input
+      m_Flags: 0
+    m_Flags: 0
+  color1: {r: 0.9339623, g: 0.8590691, b: 0.8590691, a: 0}
+  color2: {r: 0.10346207, g: 0.36345398, b: 0.8773585, a: 0}
 --- !u!114 &1157783657
 MonoBehaviour:
   m_ObjectHideFlags: 0
