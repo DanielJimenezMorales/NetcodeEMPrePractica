@@ -6,12 +6,14 @@ using Unity.Netcode;
 
 public class Player : NetworkBehaviour
 {
+    #region Variables
     [SerializeField] private InputAction Move;
 
     private Transform _playerTransform;
     private Vector2 _movementInput;
     private float _rotSpeed = 5f;
     private float _speed = .2f;
+    #endregion
 
     private void Awake()
     {
@@ -37,6 +39,7 @@ public class Player : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (IsOwner)
         {
             MoveServerRpc(Move.ReadValue<Vector2>()); // client-server call
