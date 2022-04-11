@@ -63,6 +63,8 @@ public class ColorChanger : NetworkBehaviour
 
     private void UpdateColor(Color previous, Color current)
     {
+        if (!IsClient) return;
+
         playerMaterial.color = current;
     }
     
