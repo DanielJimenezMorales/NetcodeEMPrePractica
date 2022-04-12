@@ -9,14 +9,14 @@ public class Shooter : NetworkBehaviour
 {
     #region Variables
     [SerializeField] private InputAction ShootInput;
-    private float _reach = 5f;
+    private float _reach = 50f;
     private LineRenderer _line;
     private Material _playerMaterial = null;
     #endregion
 
     #region NetcodeVariables
     private NetworkVariable<Color> currentColor = new NetworkVariable<Color>(Color.white, 
-        NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+        NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     #endregion
 
     private void Awake()
@@ -82,6 +82,12 @@ public class Shooter : NetworkBehaviour
         _playerMaterial.color = current;
     }
 
+    [ClientRpc]
+    private void ReceiveShotClientRpc (ClientRpcParams clientRpcParams = default)
+    {
+        currentColor.Value = Color.red;
+    }
+
     [ServerRpc]
     private void ShootServerRpc(Ray ray, float reach)
     {
@@ -89,6 +95,16 @@ public class Shooter : NetworkBehaviour
         if (Physics.Raycast(ray, out hit, _reach))
         {
             ulong playerId = hit.collider.gameObject.GetComponent<NetworkObject>().NetworkObjectId;
+
+            ClientRpcParams clientRpcParams = new ClientRpcParams
+            {
+                Send = new ClientRpcSendParams
+                {
+                    TargetClientIds = new ulong[] { playerId }
+                }
+            };
+
+            ReceiveShotClientRpc(clientRpcParams);
         }
     }
 }
